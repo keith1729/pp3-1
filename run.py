@@ -120,6 +120,52 @@ def create_new_acc():
     login()
 
 
+def login():
+
+    while True:
+        try:
+            clear_screen()
+            time.sleep(2)
+            print(f'''{Fore.YELLOW}{logo}''')
+            time.sleep(2)
+            characters(f'''{Fore.WHITE}
+    Please login with Username and Pin!
+            ''')
+            username_entered = input('\n    Enter Username: ')
+            time.sleep(1)
+            pin_entered = input('\n    Enter Pin: ')
+
+
+            username_entered_cell = accounts_worksheet.find(username_entered)
+            username_entered_row = username_entered_cell.row
+
+            username_entered_row_username = accounts_worksheet.cell(username_entered_row, 1).value
+            username_entered_row_account_number = accounts_worksheet.cell(username_entered_row, 2).value
+            username_entered_row_pin = accounts_worksheet.cell(username_entered_row, 3).value
+            username_entered_row_balance = accounts_worksheet.cell(username_entered_row, 4).value
+
+            time.sleep(1)
+            characters('''
+    Validating Username and Pin...
+            ''')
+            if username_entered == username_entered_row_username and pin_entered == username_entered_row_pin:
+                user_account = BankAccount(username = username_entered_row_username, account_number = username_entered_row_account_number, pin = username_entered_row_pin, balance = username_entered_row_balance)
+                time.sleep(6)
+                characters('''
+    Login Successful!
+                ''')
+                time.sleep(4)
+                break           
+            else:
+                print('\n    Cannot login! Try again...\n')
+                time.sleep(4)
+                login()
+        except:
+            print('\n    Cannot login! Try again...\n')
+            time.sleep(4)
+            login()
+
+
 def welcome():
     while True:
         try:
