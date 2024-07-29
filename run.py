@@ -42,6 +42,59 @@ def characters(text):
 
 def clear_screen():
     os.system('clear')
+    
+
+def create_new_acc():
+
+    while True:
+        try:
+            clear_screen()
+            time.sleep(2)
+            print(f'''{Fore.YELLOW}{logo}''')
+            time.sleep(2)
+            characters(f'''{Fore.WHITE}
+    To create a new account please enter a Username:
+            ''')
+
+            username = input('\n>> ')
+
+            # Validate username (you can add more checks here)
+            if username.strip():  # Check if not empty
+                break
+            else:
+                print('\nYou cannot have an empty Username!\n')
+                time.sleep(4)
+                create_new_acc()
+        except ValueError:
+            print('\nInput a valid Username!\n')
+            time.sleep(4)
+            create_new_acc()
+
+    time.sleep(3)
+    characters(f'''
+    Generating new Account Number and new Pin for {username}...
+    ''')
+
+    account_number = 'AC-' + str(random.randint(1000000, 9999999))
+    pin = str(random.randint(1000, 9999))
+
+    balance = 0
+
+    user_account = BankAccount(username = username, account_number = account_number, pin = pin, balance = balance)
+    time.sleep(6)
+    characters(f'''
+    Username: {user_account.username}
+    Account Number: {user_account.account_number}
+    Pin: {user_account.pin}
+    Balance: {user_account.balance}
+    ''')
+
+    accounts_worksheet = SHEET.worksheet('accounts')
+    accounts_worksheet.append_row([user_account.username, user_account.account_number, user_account.pin, user_account.balance])
+
+    proceed(user_account)
+    time.sleep(8)
+    login()
 
 
 def welcome():
