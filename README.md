@@ -85,4 +85,9 @@ prompted for their username and pin and these are used to validate the users log
 
 ## 4. Testing
 
+- Validator testing
+<div align="center">
+  <img src="assets/exit.PNG" alt="Validator">
+</div>
+
 - The Black python formatter was installed and used to format code

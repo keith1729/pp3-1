@@ -63,16 +63,14 @@ class BankAccount:
             self.balance += amount
             return self.balance
         else:
-            raise ValueError("Deposit amount cannot be a negative or zero value!")
+            raise ValueError("Amount cannot be negative or zero value!")
 
     def withdraw(self, amount):
         if 0 < amount <= self.balance:
             self.balance -= amount
             return self.balance
         else:
-            raise ValueError(
-                "Withdrawal amount cannot be a negative value or above your balance!"
-            )
+            raise ValueError('Cannot be negative value or above your balance!')
 
 
 def create_new_acc():
@@ -115,7 +113,8 @@ def create_new_acc():
     balance = 0
 
     user_account = BankAccount(
-        username=username, account_number=account_number, pin=pin, balance=balance
+        username=username, account_number=account_number, pin=pin, 
+        balance=balance
     )
     time.sleep(6)
     characters(
@@ -201,15 +200,11 @@ def login():
                 options(user_account)
                 break
             else:
-                print(
-                    "\n    Cannot login! Please check your credentials and try again...\n"
-                )
+                print("\n    Please check your credentials and try again...\n")
                 time.sleep(4)
                 login()
         except ValueError:
-            print(
-                "\n    Cannot login! Please check your credentials and try again...\n"
-            )
+            print("\n    Please check your credentials and try again...\n")
             time.sleep(4)
             login()
 
@@ -247,7 +242,7 @@ def options(user_account):
     To deposit into {user_account.username}'s account
                 """
                 )
-                deposit_amount = float(input("\n    Enter your deposit amount: €\n"))
+                deposit_amount = float(input("\nEnter deposit amount: €\n"))
                 user_account.deposit(deposit_amount)
                 time.sleep(3)
                 characters(
@@ -262,7 +257,7 @@ def options(user_account):
                 """
                 )
                 cell = accounts_worksheet.find(user_account.username)
-                accounts_worksheet.update_cell(cell.row, 4, user_account.balance)
+                accounts_worksheet.update_cell(cell.row, 4,user_account.balance)
                 proceed(user_account)
                 break
             elif option == 2:
@@ -275,7 +270,7 @@ def options(user_account):
     To withdraw from {user_account.username}'s account
                 """
                 )
-                withdraw_amount = float(input("\n    Enter your withdraw amount: €\n"))
+                withdraw_amount = float(input("\nEnter withdraw amount: €\n"))
                 user_account.withdraw(withdraw_amount)
                 time.sleep(3)
                 characters(
@@ -290,7 +285,7 @@ def options(user_account):
                 """
                 )
                 cell = accounts_worksheet.find(user_account.username)
-                accounts_worksheet.update_cell(cell.row, 4, user_account.balance)
+                accounts_worksheet.update_cell(cell.row, 4,user_account.balance)
                 proceed(user_account)
                 break
             elif option == 3:
@@ -407,6 +402,5 @@ def welcome():
             print("\nInvalid input. Please enter a number (1 or 2)\n")
             time.sleep(4)
             welcome()
-
 
 welcome()
