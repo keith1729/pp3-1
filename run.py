@@ -1,6 +1,9 @@
-
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
+import pytz
+import time
+import random
 import sys
 from colorama import Fore
 import os
@@ -79,10 +82,9 @@ def create_new_acc():
     To create a new account please enter a Username:
             ''')
 
-            username = input('\n>> ')
+            username = input('\n>> \n')
 
-            # Validate username (you can add more checks here)
-            if username.strip():  # Check if not empty
+            if username.strip():  
                 break
             else:
                 print('\nYou cannot have an empty Username!\n')
@@ -131,10 +133,9 @@ def login():
             characters(f'''{Fore.WHITE}
     Please login with Username and Pin!
             ''')
-            username_entered = input('\n    Enter Username: ')
+            username_entered = input('\n    Enter Username: \n')
             time.sleep(1)
-            pin_entered = input('\n    Enter Pin: ')
-
+            pin_entered = input('\n    Enter Pin: \n')
 
             username_entered_cell = accounts_worksheet.find(username_entered)
             username_entered_row = username_entered_cell.row
@@ -155,13 +156,14 @@ def login():
     Login Successful!
                 ''')
                 time.sleep(4)
+                options(user_account)
                 break           
             else:
-                print('\n    Cannot login! Try again...\n')
+                print('\n    Cannot login! Please check your credentials and try again...\n')
                 time.sleep(4)
                 login()
-        except:
-            print('\n    Cannot login! Try again...\n')
+        except ValueError:
+            print('\n    Cannot login! Please check your credentials and try again...\n')
             time.sleep(4)
             login()
 
@@ -185,7 +187,7 @@ def options(user_account):
     [4] Exit
             ''')
 
-            option = int(input('\n>> '))
+            option = int(input('\n>> \n'))
 
             if option == 1:
                 clear_screen()
@@ -195,7 +197,7 @@ def options(user_account):
                 characters(f'''{Fore.WHITE}
     To deposit into {user_account.username}'s account
                 ''')
-                deposit_amount = float(input('\n    Enter your deposit amount: €'))
+                deposit_amount = float(input('\n    Enter your deposit amount: €\n'))
                 user_account.deposit(deposit_amount)
                 time.sleep(3)
                 characters('''
@@ -217,7 +219,7 @@ def options(user_account):
                 characters(f'''{Fore.WHITE}
     To withdraw from {user_account.username}'s account
                 ''')
-                withdraw_amount = float(input('\n    Enter your withdraw amount: €'))
+                withdraw_amount = float(input('\n    Enter your withdraw amount: €\n'))
                 user_account.withdraw(withdraw_amount)
                 time.sleep(3)
                 characters('''
@@ -281,7 +283,7 @@ def proceed(user_account):
     [2] Exit
             ''')
             
-            option = int(input('\n>> '))
+            option = int(input('\n>> \n'))
 
             if option == 1:
                 options(user_account)
@@ -319,7 +321,7 @@ def welcome():
     [2] Create New Account
             ''')
             
-            login_option = int(input('\n>> '))
+            login_option = int(input('\n>> \n'))
             
             if login_option == 1:
                 login()
