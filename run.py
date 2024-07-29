@@ -42,7 +42,30 @@ def characters(text):
 
 def clear_screen():
     os.system('clear')
+
+
+class BankAccount:
+
+    def __init__(self, username, account_number, pin, balance):
+        self.username = username
+        self.account_number = account_number
+        self.pin = pin
+        self.balance = float(balance)
     
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            return self.balance
+        else:
+            raise ValueError('Deposit amount cannot be a negative or zero value!')
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            return self.balance
+        else:
+            raise ValueError('Withdrawal amount cannot be a negative value or above your balance!')
+
 
 def create_new_acc():
 
