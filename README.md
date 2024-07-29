@@ -81,13 +81,42 @@ prompted for their username and pin and these are used to validate the users log
 
 - Python is the language that was used to develope this banking application
 - Google sheets is used to store the user accounts data
-- Github for storing code
+- Github for version control
 
 ## 4. Testing
 
 - Validator testing
-<div align="center">
-  <img src="assets/exit.PNG" alt="Validator">
-</div>
+The Python code was passed through the pep8 Python Linter validator and showed some whitespace warnings.
+
+- Bugs
+Errors were not being caught and forcing the programme to crash, while loops with try and except were
+used to catch any errors from users inputing unsuitable data.
+
+- Manual testing
+Whenever a new feature was developed into the app it was manually tested.
+
+## 5. Deployment
+
+- Heroku deployment procedure
+Login to Heroku
+Go to 'Create new app'
+Enter a unique application name, select your region and click 'Create app'
+Go to 'settings' tab
+Under 'Config Vars' click 'Reveal Config Vars'
+Add the JSPN CREDS file
+Add PORT 8000
+Add 'heroku/python' and 'heroku/node.js' to the 'Buildpacks'
+Click the 'Deploy' tab.
+In the 'Deployment method' section select 'GitHub'
+Search for the repo name and click 'connect'
+Under 'Automatic deploys' click 'Enable Automatic Deploys'
+
+## 6. Credits
+
+- Mentor for giving assistance with code 
+- Facilitator for educational resources
+- Youtube for tutorials
+- ChatGPT for helping to understand pythonic code
+- The Love Sandwiches walk-through project
 
 - The Black python formatter was installed and used to format code
