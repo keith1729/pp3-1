@@ -79,4 +79,10 @@ prompted for their username and pin and these are used to validate the users log
 
 ## 3. Technologies Used
 
+- Python is the language that was used to develope this banking application
+- Google sheets is used to store the user accounts data
+- Github for storing code
 
+## 4. Testing
+
+- The Black python formatter was installed and used to format code
