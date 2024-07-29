@@ -269,6 +269,41 @@ def options(user_account):
             options(user_account)
 
 
+def proceed(user_account):
+    while True:
+        try:
+            characters('''
+    Would you like to continue to your options page?
+
+    Please choose one of the following:
+
+    [1] Options
+    [2] Exit
+            ''')
+            
+            option = int(input('\n>> '))
+
+            if option == 1:
+                options(user_account)
+                break
+            elif option ==2:
+                characters(f'''
+    Thank you {user_account.username} for using The Bank!
+                
+                ''')
+                time.sleep(6)
+                welcome()
+                break
+            else:
+                print('\nPlease enter a valid option (1-2)\n')
+                time.sleep(4)
+                proceed(user_account)
+        except ValueError:
+            print('\nInvalid input. Please enter a number (1-2)\n')
+            time.sleep(4)
+            proceed(user_account)
+
+
 def welcome():
     while True:
         try:
