@@ -34,12 +34,18 @@ logo = """
 
 
 def current_time_date():
+    '''
+    Generate the current date and time
+    '''
     local_tz = pytz.timezone("Europe/Dublin")
     current_tz = datetime.now(local_tz).strftime("(%H:%M:%S, %d-%m-%Y)")
     return current_tz
 
 
 def characters(text):
+    '''
+    Give a time lapse for characters printed to terminal
+    '''
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -47,11 +53,16 @@ def characters(text):
 
 
 def clear_screen():
+    '''
+    To clear the screen for each page
+    '''
     os.system("clear")
 
 
 class BankAccount:
-
+    '''
+    Class for a bank account
+    '''
     def __init__(self, username, account_number, pin, balance):
         self.username = username
         self.account_number = account_number
@@ -59,6 +70,9 @@ class BankAccount:
         self.balance = float(balance)
 
     def deposit(self, amount):
+        '''
+        Deposit function
+        '''
         if amount > 0:
             self.balance += amount
             return self.balance
@@ -66,6 +80,9 @@ class BankAccount:
             raise ValueError("Amount cannot be negative or zero value!")
 
     def withdraw(self, amount):
+        '''
+        Withdraw function
+        '''
         if 0 < amount <= self.balance:
             self.balance -= amount
             return self.balance
@@ -74,7 +91,9 @@ class BankAccount:
 
 
 def create_new_acc():
-
+    '''
+    Function for creating users new account
+    '''
     while True:
         try:
             clear_screen()
@@ -142,7 +161,9 @@ def create_new_acc():
 
 
 def login():
-
+    '''
+    Logging in a user with an account
+    '''
     while True:
         try:
             clear_screen()
@@ -210,7 +231,9 @@ def login():
 
 
 def options(user_account):
-
+    '''
+    Giving options to the user
+    '''
     while True:
         try:
             clear_screen()
@@ -331,6 +354,9 @@ def options(user_account):
 
 
 def proceed(user_account):
+    '''
+    Function to give the user a choice to continue or exit
+    '''
     while True:
         try:
             characters(
@@ -370,6 +396,9 @@ def proceed(user_account):
 
 
 def welcome():
+    '''
+    Welcome function that prompts user to login or create account
+    '''
     while True:
         try:
             clear_screen()

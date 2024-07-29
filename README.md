@@ -118,5 +118,4 @@ Under 'Automatic deploys' click 'Enable Automatic Deploys'
 - Youtube for tutorials
 - ChatGPT for helping to understand pythonic code
 - The Love Sandwiches walk-through project
-
 - The Black python formatter was installed and used to format code
