@@ -15,3 +15,6 @@ The Bank is an online banking application developed with Python which gives the 
     <li>Deployment</li>
     <li>Credits</li>
 <ol>
+
+## 1. UX
+### Goals
