@@ -1,6 +1,9 @@
 
 import gspread
 from google.oauth2.service_account import Credentials
+import sys
+from colorama import Fore
+import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -19,6 +22,16 @@ def current_time_date():
     local_tz = pytz.timezone('Europe/Dublin')
     current_tz = datetime.now(local_tz).strftime('(%H:%M:%S, %d-%m-%Y)')
     return current_tz
+
+def characters(text):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.01)
+
+def clear_screen():
+    os.system('clear')
+
 
 def welcome():
     while True:
