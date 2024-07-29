@@ -166,6 +166,109 @@ def login():
             login()
 
 
+def options(user_account):
+
+    while True:
+        try:
+            clear_screen()
+            time.sleep(2)
+            print(f'''{Fore.YELLOW}{logo}''')
+            time.sleep(2)
+            characters(f'''{Fore.WHITE}
+    Welcome {user_account.username}!
+                
+    Please choose one of the following options:
+
+    [1] Deposit
+    [2] Withdraw
+    [3] Show Account Details
+    [4] Exit
+            ''')
+
+            option = int(input('\n>> '))
+
+            if option == 1:
+                clear_screen()
+                time.sleep(2)
+                print(f'''{Fore.YELLOW}{logo}''')
+                time.sleep(2)
+                characters(f'''{Fore.WHITE}
+    To deposit into {user_account.username}'s account
+                ''')
+                deposit_amount = float(input('\n    Enter your deposit amount: €'))
+                user_account.deposit(deposit_amount)
+                time.sleep(3)
+                characters('''
+    Deposit Successful!
+                ''')
+                time.sleep(2)
+                characters(f'''
+    New Balance: €{user_account.balance}    
+                ''')
+                cell = accounts_worksheet.find(user_account.username)
+                accounts_worksheet.update_cell(cell.row, 4, user_account.balance)
+                proceed(user_account)
+                break
+            elif option == 2:
+                clear_screen()
+                time.sleep(2)
+                print(f'''{Fore.YELLOW}{logo}''')
+                time.sleep(2)
+                characters(f'''{Fore.WHITE}
+    To withdraw from {user_account.username}'s account
+                ''')
+                withdraw_amount = float(input('\n    Enter your withdraw amount: €'))
+                user_account.withdraw(withdraw_amount)
+                time.sleep(3)
+                characters('''
+    Withdrawal Successful!
+                ''')
+                time.sleep(2)
+                characters(f'''
+    New Balance: €{user_account.balance}
+                ''')
+                cell = accounts_worksheet.find(user_account.username)
+                accounts_worksheet.update_cell(cell.row, 4, user_account.balance)
+                proceed(user_account)
+                break
+            elif option == 3:
+                clear_screen()
+                time.sleep(2)
+                print(f'''{Fore.YELLOW}{logo}''')
+                time.sleep(2)
+                characters(f'''{Fore.WHITE}
+    {user_account.username} your Account Details are as follows:
+
+    Username: {user_account.username}
+    Account Number: {user_account.account_number}
+    Pin: {user_account.pin}
+    Current Balance: €{user_account.balance}
+                ''')
+                time.sleep(2)
+                proceed(user_account)
+                break
+            elif option == 4:
+                clear_screen()
+                time.sleep(2)
+                print(f'''{Fore.YELLOW}{logo}''')
+                time.sleep(2)
+                characters(f'''{Fore.WHITE}
+    Thank you {user_account.username} for using The Bank!
+                
+                ''')
+                time.sleep(6)
+                welcome()
+                break
+            else:
+                print('\nPlease enter a valid option (1-4)\n')
+                time.sleep(4)
+                options(user_account)
+        except ValueError:
+            print('\nInvalid input. Please enter a number (1-4)\n')
+            time.sleep(4)
+            options(user_account)
+
+
 def welcome():
     while True:
         try:
