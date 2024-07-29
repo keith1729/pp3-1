@@ -1,6 +1,4 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -16,3 +14,42 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_bank')
 
 accounts_worksheet = SHEET.worksheet('accounts')
+
+def current_time_date():
+    local_tz = pytz.timezone('Europe/Dublin')
+    current_tz = datetime.now(local_tz).strftime('(%H:%M:%S, %d-%m-%Y)')
+    return current_tz
+
+def welcome():
+    while True:
+        try:
+            clear_screen()
+            characters(f'''{Fore.YELLOW}{logo}''')
+            time.sleep(2)
+            characters(f'''{Fore.WHITE}
+    Welcome to The Bank! {current_time_date()}
+
+    Please choose an option:
+
+    [1] Login
+    [2] Create New Account
+            ''')
+            
+            login_option = int(input('\n>> '))
+            
+            if login_option == 1:
+                login()
+                break
+            elif login_option == 2:
+                create_new_acc()
+                break
+            else:
+                print("\nPlease choose a valid option (1 or 2)\n")
+                time.sleep(4)
+                welcome()
+        except ValueError:
+            print('\nInvalid input. Please enter a number (1 or 2)\n')
+            time.sleep(4)
+            welcome()
+
+welcome()
